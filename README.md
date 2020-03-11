@@ -42,7 +42,7 @@ git clone https://github.com/HMY777/SUDA_NETM_code.git
 
 假如你想要编写2019年的答案，在2019文件夹中的Code文件夹中新建一个**以你的Github账户名命名的文件夹**
 
-![新建code](G:\GitRepo\SUDA_NETM_code\README.assets\新建code.gif)
+![新建code](..\README.assets\新建code.gif)
 
 3 编写代码，代码存放在刚刚新建的文件中，假如有输出文件，请统一命名为output.txt方便查看
 
