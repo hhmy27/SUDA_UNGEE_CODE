@@ -21,7 +21,7 @@
 	/Code:
 		/HMY777：
 			2019.py
-            output.txt
+            		output.txt
     /Data:
     	Data.txt
     	generated_data.py
