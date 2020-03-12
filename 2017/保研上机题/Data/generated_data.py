@@ -11,5 +11,8 @@ if __name__ == '__main__':
     with open('data.txt', 'w') as fb:
         fb.write("{:} ".format(k))
         fb.write("{:} ".format(dimension))
+        L=[]
         for i in range(100):
-            fb.write("{:} ".format(random.randint(0, 50)))
+            L.append(random.randint(0, 100))
+        for num in L:
+            fb.write(str(num)+' ')
