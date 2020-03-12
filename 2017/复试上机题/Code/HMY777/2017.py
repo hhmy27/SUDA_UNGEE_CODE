@@ -1,8 +1,9 @@
 import pickle
 import math
 class Circle(object):
-    # 圆的类，包含构成半径的两个点，其中一个为原点，记录原包含的坐标点数，返回密度
-    # 计算半径，和面积函数
+    # 圆的类，包含构成半径的两个点，其中一个为原点
+    # 记录圆包含的坐标点数
+    # 计算半径，密度，和面积
     def __init__(self,point1,point2):
         self.center_point=point1
         self.another_point=point2
@@ -35,20 +36,14 @@ class Solution(object):
                     self.points.append((int(a),int(b)))
                 except:
                     break
-        # print(self.points)
 
-    def generate_circle(self):  # 产生圆
+    def generate_circle(self):
+        # 前后两个点产生圆
         size=len(self.points)
         for ind in range(0,size):
             p1=self.points[ind]
             p2=self.points[(ind+1)%size]
-            # print(((p1[0]-p2[0])**2+(p1[1]-p2[1])**2)**0.5)
-            # c=Circle(p1,p2)
-            # print(c.r)
             self.circles.append(Circle(p1,p2))
-
-        # for i in self.circles:
-            # print(i.r)
 
     def cal_points_in_circle(self):
         for circle in self.circles:
@@ -65,7 +60,6 @@ class Solution(object):
             for circle in self.circles[0:5]:
                 fb.write("({:},{:}){:>5}{:>7.2f}\n".format(circle.center_point,circle.another_point,
                                                       circle.include_points,circle.cal_density()))
-
 
 
 if __name__ == '__main__':
