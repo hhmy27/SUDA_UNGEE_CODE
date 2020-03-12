@@ -21,7 +21,7 @@
 	/Code:
 		/HMY777：
 			2019.py
-            output.txt
+            		output.txt
     /Data:
     	Data.txt
     	generated_data.py
@@ -37,22 +37,22 @@ HMY777文件夹下面就是我自己编写的解答代码，想要添加自己�
 2 clone项目到本地
 
 ```
-git clone https://github.com/HMY777/SUDA_NETM_code.git
+git clone 刚刚fork的仓库地址
 ```
 
 假如你想要编写2019年的答案，在2019文件夹中的Code文件夹中新建一个**以你的Github账户名命名的文件夹**
 
-![新建code](G:\GitRepo\SUDA_NETM_code\README.assets\新建code.gif)
+![](https://github.com/HMY777/SUDA_NETM_code/blob/master/README.assets/%E6%96%B0%E5%BB%BAcode.gif)
 
 3 编写代码，代码存放在刚刚新建的文件中，假如有输出文件，请统一命名为output.txt方便查看
 
-4 push代码到远程仓库，同时提交PR申请，我看到之后会处理 👀
+4 push代码到远程仓库，提交PR申请，我看到之后会处理 👀
 
 ## 说明
 
 现在只有18~19年的文件有样例数据，其余年份的样例数据会陆续添加
 
-欢迎添加上你的解答~~
+欢迎添加上你的解答😎~~
 
 
 
