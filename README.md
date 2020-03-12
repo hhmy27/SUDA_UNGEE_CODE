@@ -37,7 +37,7 @@ HMY777文件夹下面就是我自己编写的解答代码，想要添加自己�
 2 clone项目到本地
 
 ```
-git clone https://github.com/HMY777/SUDA_NETM_code.git
+git clone 刚刚fork的仓库地址
 ```
 
 假如你想要编写2019年的答案，在2019文件夹中的Code文件夹中新建一个**以你的Github账户名命名的文件夹**
