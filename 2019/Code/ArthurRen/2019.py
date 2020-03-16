@@ -10,7 +10,7 @@ class Solution:
         self.arr = []
         self.res = [0 for _ in range(10)]
         self.primeGenerator = Solution.findNextPrime()
-        self.debug = True
+        self.debug = False
         self.primes = []
         self.read_file()
         self.print()
