@@ -1,7 +1,9 @@
+from bisect import insort_left
 class Solution(object):
     def __init__(self):
-        self.num_list = []
-        self.max_num_list = []
+        self.numLst = []
+        self.maxNumLst = []
+        self.restNumLst={}
         self.read_file()
         self.selete_prime()
         self.selete_rest_num()
@@ -11,13 +13,15 @@ class Solution(object):
         # 读入文件，存入num_list
         with open('../../Data/Data.txt') as fb:
             for line in fb:
-                self.num_list.append(int(line))
+                self.numLst.append(int(line))
+        self.numLst.sort()
 
     def write_file(self):
         with open('output.txt', 'w') as fb:
-            fb.write(str(len(self.max_num_list)) + '\n')
-            for i in range(len(self.max_num_list)):
-                fb.write("{:>4}".format(self.max_num_list[i]))
+            fb.write(str(len(self.maxNumLst)) + '\n')
+            self.maxNumLst=list(set(self.maxNumLst))
+            for i in range(len(self.maxNumLst)):
+                fb.write("{:>4}".format(self.maxNumLst[i]))
                 if (i + 1) % 5 == 0:
                     fb.write('\n')
 
@@ -34,22 +38,33 @@ class Solution(object):
         return True
 
     def selete_prime(self):
-        for num in self.num_list:
+        for i,num in enumerate(self.numLst):
             if self.is_prime(num):
-                self.max_num_list.append(num)
+                self.maxNumLst.append(num)
+        self.restNumLst=list(set(self.numLst).difference(set(self.maxNumLst)))
+        self.restNumLst.sort(reverse=True)      # restNumLst中的元素是非素数
+
 
     def selete_rest_num(self):
-        for num in self.num_list:
-            if num in self.max_num_list:
+        # 开始遍历没有被选中的数据，尝试加入
+        for n in self.restNumLst:
+            iLst=[]
+            for num in self.maxNumLst:
+                if self.gcd(num,n)!=1:  # 找到了不互质的num
+                    iLst.append(num)  #加入num
+            if sum(iLst)>n:
                 continue
-            flag = True
-            for prime in self.max_num_list:
-                if self.gcd(num, prime) != 1:
-                    flag = False
-                    break
-            if flag:
-                self.max_num_list.append(num)
-
+            else :
+                # 新加入的元素使得子集更大
+                # 总是尝试加入最大的数，替换掉多个比当前数更小的数
+                for i in iLst:
+                    self.maxNumLst.remove(i)
+                ind = len(self.maxNumLst)
+                while ind > 0:
+                    if (self.maxNumLst[ind - 1] < n):
+                        break
+                    ind -= 1
+                self.maxNumLst.insert(ind,n)    # 在合适的位置插入，保持有序
 
 if __name__ == '__main__':
     solution = Solution()
