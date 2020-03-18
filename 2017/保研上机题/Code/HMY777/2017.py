@@ -42,7 +42,7 @@ class Solution(object):
 
     def cal_distance(self, p1, p2):
         # 计算距离
-        return ((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2) ** 0.5
+        return sum(((i[0] - i[1]) ** 2 for i in zip(p1, p2))) ** 0.5
 
     def cal_min_distance_point(self):
         # 默认最短距离是两个点
