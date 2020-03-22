@@ -1,6 +1,6 @@
 ## 介绍 
 
-苏州大学研究生复试历年上机题整理 💻
+苏州大学研究生历年算法题整理，包含初试和复试题目💻
 
 [题目来源于该学长的博客](http://www.zivblog.top/categories/研究生复试/)
 
@@ -9,7 +9,7 @@
 每一个年份的文件夹下基本上都是如此的目录结构 📂
 
 ```
-	Code：存放代码文件夹
+	Code：存放代码
 	Data：存放数据
 	题目.md：题目描述
 ```
@@ -23,8 +23,8 @@
 			2019.py
             		output.txt
     /Data:
-    	Data.txt
-    	generated_data.py
+    	Data.txt：输入数据
+    	generated_data.py：用于生成数据
     题目.md
 ```
 
