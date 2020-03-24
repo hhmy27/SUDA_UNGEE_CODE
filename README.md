@@ -5,11 +5,29 @@
 [题目来源于该学长的博客](http://www.zivblog.top/categories/研究生复试/)
 
 ## 目录结构
-
 每一个年份的文件夹下基本上都是如此的目录结构 📂
+### 初试
 
 ```
-	Code：存放代码
+	Code：存放代码和测试用例
+	题目.md：题目描述
+```
+
+例如:
+
+```
+./2019:
+	/Code:
+		/HMY777：
+			2019.py
+            testcases.py
+    题目.md
+```
+
+### 复试
+
+```
+	Code：存放代码和输出文件
 	Data：存放数据
 	题目.md：题目描述
 ```
@@ -21,7 +39,7 @@
 	/Code:
 		/HMY777：
 			2019.py
-            		output.txt
+            output.txt
     /Data:
     	Data.txt：输入数据
     	generated_data.py：用于生成数据

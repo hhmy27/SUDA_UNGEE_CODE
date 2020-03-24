@@ -1,5 +1,5 @@
 import unittest
-from binarytree import BTNode
+from DataStructure.binarytree import BTNode
 
 valueList = [1, 2, 3, 4, 5, None, 6, None, None, 7, 8, None, None, None, 9]
 tree = None

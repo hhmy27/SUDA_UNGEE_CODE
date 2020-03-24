@@ -1,5 +1,6 @@
-from graph import Graph
-from mgraph import MGraph
+from DataStructure.graph import Graph
+from DataStructure.mgraph import MGraph
+from typing import List
 
 
 class ArcNode:
@@ -69,7 +70,7 @@ class VNode:
         self.__value = value
 
     @property
-    def firstArc(self):
+    def firstArc(self) -> ArcNode:
         return self.__firstArc
 
     @firstArc.setter
@@ -94,7 +95,7 @@ class ALGraph(Graph):
         return self
 
     @property
-    def vertices(self):
+    def vertices(self) -> List[VNode]:
         return self.__vertices
 
     def toMGraph(self) -> MGraph:
