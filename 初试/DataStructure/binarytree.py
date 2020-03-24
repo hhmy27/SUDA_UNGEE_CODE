@@ -63,7 +63,10 @@ class BTNode:
         Create a BTree from a sequential storage structure
         """
         def __fromList(index) -> BTNode or None:
-            assert index is not None and type(index) == int and index >= 0
+            assert index is not None
+            assert type(index) == int
+            assert index >= 0
+            
             if index >= len(values):
                 return None
             else:
@@ -116,6 +119,7 @@ class BTNode:
 
         assert type(root) is BTNode
         assert visit is not None
+
         for node in BTNode.__levelOrderIterator(root):
             visit(node)
 
