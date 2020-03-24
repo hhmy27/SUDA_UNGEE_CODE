@@ -98,13 +98,16 @@ class Solution(object):
             if (num % 2 != 0):
                 continue
             # 找到偶数了
-            for i in range(num - 1, 1, -1):
-                if is_prime(i) and is_prime(num - i):  # 找到一组质数
-                    L.append((num, i, num - i))
-                    break
+            lst=[]
+            tnum=num
+            for i in range(2,num):
+                while(num%i==0):
+                    lst.append(str(i))
+                    num/=i
+            L.append((tnum,lst))
         with open('output.txt', 'w') as fb:
             for item in L:
-                fb.write('{:} : {}+{}\n'.format(item[0], item[1], item[2]))
+                fb.write('{:} : {:}\n'.format(item[0], '*'.join(item[1])))
 
 
 if __name__ == '__main__':
