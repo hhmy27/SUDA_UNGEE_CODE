@@ -1,7 +1,7 @@
 import unittest
-from mgraph import MGraph
-from algraph import ALGraph
-from graph import Graph
+from DataStructure.mgraph import MGraph
+from DataStructure.algraph import ALGraph
+from DataStructure.graph import Graph
 
 arcMatrix = [
     [1, 1, 1, 0, 0, 0, 0, 0, 0, 1],

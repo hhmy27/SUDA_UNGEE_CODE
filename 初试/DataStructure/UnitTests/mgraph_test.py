@@ -1,5 +1,5 @@
 import unittest
-from mgraph import MGraph
+from DataStructure.mgraph import MGraph
 
 arcMatrix = [
     [1, 1, 1, 0, 0, 0, 0, 0, 0, 1],

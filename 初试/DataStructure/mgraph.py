@@ -1,13 +1,14 @@
-from graph import Graph
+from DataStructure.graph import Graph
 from types import FunctionType
 from typing import List
+from typing import Tuple
 
 
 class MGraph(Graph):
     """
     Graph implemented with matrix
     """
-    def __init__(self, vertices: List, arcMatrix: List[List]):
+    def __init__(self, vertices: List or Tuple, arcMatrix: List[List] or Tuple[Tuple]):
         """
         :param vertices: vertex list
         :param arcMatrix: arc matrix
@@ -18,15 +19,15 @@ class MGraph(Graph):
 
         # Verify if the arcs matrix has the same size with vertices
         assert vexNum == len(arcMatrix)
-        assert all(vexNum == (len(arcs) if arcs else 0) for arcs in arcMatrix)
+        assert all(vexNum == (len(arcs) if arcs is not None else 0) for arcs in arcMatrix)
 
         arcNum = sum(len(arcs) - arcs.count(False) for arcs in arcMatrix)
 
         self._setVexNum(vexNum)
         self._setArcNum(arcNum)
 
-        self.__vertices = vertices
-        self.__arcMatrix = arcMatrix
+        self.__vertices = list(vertices)
+        self.__arcMatrix = [list(arcs) for arcs in arcMatrix]
 
     @property
     def vertices(self):
