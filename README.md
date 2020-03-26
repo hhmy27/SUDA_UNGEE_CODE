@@ -40,7 +40,7 @@
 	/Code:
 		/HMY777：
 			2019.py
-            output.txt
+            		output.txt
     /Data:
     	Data.txt：输入数据
     	generated_data.py：用于生成数据
