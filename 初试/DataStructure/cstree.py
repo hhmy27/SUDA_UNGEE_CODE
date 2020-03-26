@@ -1,5 +1,4 @@
-from typing import List
-from typing import Tuple
+from typing import Sequence
 from queue import Queue
 
 
@@ -7,6 +6,7 @@ class CSTreeNode:
     """
     Node of child-sibling tree
     """
+
     def __init__(self, value, firstChild, nextSibling):
         """
         :param firstChild: first child of the tree node
@@ -57,17 +57,24 @@ class CSTreeNode:
                 node = node.nextSibling
 
 
-
-def createCSTree(nodes: Tuple[List[Tuple] or Tuple[Tuple]] or List[List[Tuple] or Tuple[Tuple]]) \
+def createCSTree(nodes: Sequence[Sequence[Sequence[int]]]) \
         -> CSTreeNode or None:
     """
     Create a cstree from nodes stored in level order
-    Each tuple represents a tree node, and contains 2 elements
+    Each element represents a tree node, and contains 2 elements
         Tuple[0] : child count of the node
         Tuple[1] : node value
+
+    Example:
+            (
+                ((3, 1),),  # Root node , contains 3 children and it's value is 1
+                ((2, 2), (1, 3), (0, 4)),
+                ((3, 5), (0, 6), (0, 7)),
+                ((0, 8), (0, 9), (0, 10))
+            )
     """
     levels = len(nodes)
-    childIndices = {}
+    visitedIndices = [0 for _ in range(levels)]  # storage the start index of unvisited nodes in each level
 
     def createNode(r: int, c: int, siblingCount: int) -> CSTreeNode or None:
         """
@@ -83,11 +90,14 @@ def createCSTree(nodes: Tuple[List[Tuple] or Tuple[Tuple]] or List[List[Tuple] o
             return None
 
         nodeTuple = nodes[r][c]
-        childCount = nodeTuple[0]; value = nodeTuple[1]
+        childCount = nodeTuple[0]
+        value = nodeTuple[1]
 
         nextRow = r + 1
-        firstChild = createNode(r + 1, childIndices.get(nextRow, 0), childCount - 1) if childCount > 0 else None
-        childIndices[nextRow] = childIndices.get(nextRow, 0) + childCount
+        firstChild = None
+        if nextRow < levels:
+            firstChild = createNode(r + 1, visitedIndices[nextRow], childCount - 1) if childCount > 0 else None
+            visitedIndices[nextRow] += childCount
 
         # If the node has sibling , create sibling node
         nextSibling = createNode(r, c + 1, siblingCount - 1) if siblingCount > 0 else None
