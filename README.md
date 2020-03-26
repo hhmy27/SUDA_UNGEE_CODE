@@ -18,9 +18,9 @@
 
 ```
 ./2019:
-	/Code:
-		/HMY777：	
-			2019.py
+    /Code:
+        /HMY777：	
+            2019.py
             testcases.py
     题目.md
 ```
@@ -37,10 +37,10 @@
 
 ```
 ./2019:
-	/Code:
-		/HMY777：
-			2019.py
-            		output.txt
+    /Code:
+        /HMY777：
+            2019.py
+            output.txt
     /Data:
     	Data.txt：输入数据
     	generated_data.py：用于生成数据
