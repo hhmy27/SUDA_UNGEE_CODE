@@ -6,7 +6,7 @@ import DataStructure.linklist as linklist
 from DataStructure.linklist import LinkNode
 
 
-class Test2019(unittest.TestCase):
+class Test2018(unittest.TestCase):
 
     def test_solution1(self):
 
