@@ -56,6 +56,9 @@ class BTNode:
     def levelOrder(self, visit: FunctionType):
         BTNode.__levelOrder(self, visit)
 
+    def levelOrderIterator(self):
+        return BTNode.__levelOrderIterator(self)
+
     # <editor-fold desc="staticmethod">
     @staticmethod
     def fromValueList(values: List or tuple):
@@ -81,7 +84,7 @@ class BTNode:
         if not root:
             return
 
-        assert type(root) is BTNode
+        assert isinstance(root, BTNode)
         assert visit is not None
 
         visit(root)
@@ -93,7 +96,7 @@ class BTNode:
         if not root:
             return
 
-        assert type(root) is BTNode
+        assert isinstance(root, BTNode)
         assert visit is not None
 
         BTNode.__inOrder(root.lchild, visit)
@@ -105,7 +108,7 @@ class BTNode:
         if not root:
             return
 
-        assert type(root) is BTNode
+        assert isinstance(root, BTNode)
         assert visit is not None
 
         BTNode.__postOrder(root.lchild, visit)
@@ -117,7 +120,7 @@ class BTNode:
         if not root:
             return
 
-        assert type(root) is BTNode
+        assert isinstance(root, BTNode)
         assert visit is not None
 
         for node in BTNode.__levelOrderIterator(root):
@@ -128,7 +131,7 @@ class BTNode:
         if not root:
             return
 
-        assert type(root) is BTNode
+        assert isinstance(root, BTNode)
 
         q = Queue()
         q.put(root)
