@@ -8,7 +8,7 @@ from DataStructure.mgraph import MGraph
 from DataStructure.binarytree import BTNode
 
 
-class Test2019(unittest.TestCase):
+class Test2017(unittest.TestCase):
 
     def test_solution1(self):
 
