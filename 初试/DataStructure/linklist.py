@@ -39,10 +39,11 @@ class LinkNode(object):
             return self.next
 
 
-def createLinkList(values: Iterable) -> LinkNode:
+def createLinkList(values: Iterable, hasHead: bool = False) -> LinkNode:
     """
     Create a single link list without head node
     :param values: values of the list
+    :param hasHead: indicate whether the list contains head node
     :return: first node of the list
     """
     assert isinstance(values, Iterable)
@@ -55,4 +56,8 @@ def createLinkList(values: Iterable) -> LinkNode:
         if pre is not None:
             pre.next = node
         pre = node
-    return first
+    if hasHead:
+        head = LinkNode(None, first)
+        return head
+    else:
+        return first
