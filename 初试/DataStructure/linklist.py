@@ -7,6 +7,8 @@ class LinkNode(object):
     """
 
     def __init__(self, value, nextNode=None):
+        assert nextNode is None or issubclass(type(nextNode), LinkNode)
+
         self.__value = value
         self.__next = nextNode
 
@@ -24,6 +26,8 @@ class LinkNode(object):
 
     @next.setter
     def next(self, nextNode):
+        assert nextNode is None or issubclass(type(nextNode), LinkNode)
+
         self.__next = nextNode
 
     def __iter__(self):
@@ -39,9 +43,9 @@ class LinkNode(object):
             return self.next
 
 
-def createLinkList(values: Iterable, hasHead: bool = False) -> LinkNode:
+def createSingleLinkList(values: Iterable, hasHead: bool = False) -> LinkNode:
     """
-    Create a single link list without head node
+    Create a single link list
     :param values: values of the list
     :param hasHead: indicate whether the list contains head node
     :return: first node of the list
@@ -57,7 +61,60 @@ def createLinkList(values: Iterable, hasHead: bool = False) -> LinkNode:
             pre.next = node
         pre = node
     if hasHead:
-        head = LinkNode(None, first)
+        head = LinkNode(None, nextNode=first)
+        return head
+    else:
+        return first
+
+
+class DLinkNode(LinkNode):
+    """
+    Double link node
+    """
+
+    def __init__(self, value, nextNode=None, priorNode=None):
+        """
+        :param value: value of the node
+        :param nextNode: next node
+        :param priorNode: precursor node
+        """
+        assert priorNode is None or isinstance(priorNode, DLinkNode)
+
+        super().__init__(value, nextNode)
+        self.__prior = priorNode
+
+    @property
+    def prior(self):
+        return self.__prior
+
+    @prior.setter
+    def prior(self, node):
+        assert node is None or isinstance(node, DLinkNode)
+        self.__prior = node
+
+
+def createDoubleLinkList(values: Iterable, hasHead: bool = False) -> DLinkNode:
+    """
+    Create a double link list
+    :param values: values of the list
+    :param hasHead: indicate whether the list contains head node
+    :return: first node of the list
+    """
+    assert isinstance(values, Iterable)
+    assert isinstance(hasHead, bool)
+
+    first = None
+    pre = None
+    for value in values:
+        node = DLinkNode(value, priorNode=pre)
+        if first is None:
+            first = node
+        if pre is not None:
+            pre.next = node
+        pre = node
+    if hasHead:
+        head = DLinkNode(None, nextNode=first)
+        first.prior = head
         return head
     else:
         return first

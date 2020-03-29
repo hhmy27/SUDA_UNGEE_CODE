@@ -1,4 +1,5 @@
 import unittest
+import DataStructure.binarytree as btree
 from DataStructure.binarytree import BTNode
 
 valueList = [1, 2, 3, 4, 5, None, 6, None, None, 7, 8, None, None, None, 9]
@@ -8,7 +9,7 @@ tree = None
 class TestBTNode(unittest.TestCase):
     def setUp(self):
         global tree
-        tree = BTNode.fromValueList(valueList)
+        tree = btree.fromValueList(valueList)
 
     def test_preOrder(self):
         orders = []

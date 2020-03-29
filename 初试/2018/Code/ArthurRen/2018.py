@@ -27,7 +27,7 @@ class Test2018(unittest.TestCase):
             return True
 
         for case, rightResult in testcases.cases1.items():
-            lst = linklist.createLinkList(case)
+            lst = linklist.createSingleLinkList(case)
             result = judge(lst)
             self.assertEqual(rightResult, result)
 
@@ -48,7 +48,7 @@ class Test2018(unittest.TestCase):
                 return node.size + 1
 
         for case, rightResult in testcases.cases2.items():
-            tree = btree.BTNode.fromValueList(case)
+            tree = btree.fromValueList(case)
             getAndSetSize(tree)
             result = [node.size for node in tree.levelOrderIterator()]
             print(result)

@@ -3,6 +3,7 @@ import testcases  # If you use "Pycharm", please make the current directory as s
 from typing import Set
 from typing import Tuple
 from DataStructure.binarytree import BTNode
+import DataStructure.binarytree as btree
 import DataStructure.algraph as algraph
 import DataStructure.mgraph as mgraph
 
@@ -41,7 +42,7 @@ class Test2019(unittest.TestCase):
         print("Solution1: ")
         for case, rightResult in testcases.cases1.items():
             path = []
-            tree = BTNode.fromValueList(case)
+            tree = btree.fromValueList(case)
             findLastNode(tree)
             printResult(case, path)
             self.assertEqual(path, rightResult)
