@@ -3,7 +3,6 @@ import testcases
 import random
 import DataStructure.linklist as linklist
 import DataStructure.binarytree as btree
-from DataStructure.linklist import LinkNode
 from typing import Sequence
 
 
@@ -46,48 +45,61 @@ class Test2015(unittest.TestCase):
             self.assertEqual(rightResult, result)
 
     def test_solution3(self):
+        """
+        There are 2 algorithms to solve the question:
+        1. Merge the two array into a sorted array, then return the median of the array.
+            Time complexity: O(m + n)
+        2. Binary search :
+            Time complexity: O(log(m + n))
+        """
 
-        def find_kth(left_lst, left_len, right_lst, right_len, k):
-            """
-            从left_lst 和 right_lst中寻找第k大的数
-            :param left_lst: 长度小的那个数组
-            :param left_len:
-            :param right_lst: 长度达的那个数组
-            :param right_len:
-            :param k:
-            :return:
-            """
-            # 确保left_lst长度小于 right_lst 长度
-            if left_len > right_len:
-                return find_kth(right_lst, right_len, left_lst, left_len, k)
+        def findMedian_1(a: Sequence[int], b: Sequence[int]) -> int:
+            mergedNums = []
+            i = j = 0
+            while i < len(a) and j < len(b):
+                if a[i] < b[j]:
+                    mergedNums.append(a[i])
+                    i += 1
+                else:
+                    mergedNums.append(b[j])
+                    j += 1
+            mergedNums.extend(b[j:] if j < len(b) else a[i:])
+            return mergedNums[len(mergedNums) // 2]
 
-            # 长度小的数组已经没有值了,从right_lst找到第k大的数
-            if left_len == 0:
-                return right_lst[k - 1]
+        def findMedian_2(a: Sequence[int], b: Sequence[int]) -> int:
+            def findKth(A, sa, lena, B, sb, lenb, k):
+                if lena > lenb:
+                    return findKth(B, sb, lenb, A, sa, lena, k)
+                if lena == 0:
+                    return B[sb + k - 1]
+                if k == 1:
+                    return A[sa] if A[sa] < B[sb] else B[sb]
 
-            # 找到第1 大的数,比较两个列表的第一个元素,返回最小的那个
-            if k == 1:
-                return min(left_lst[0], right_lst[0])
+                mid = k // 2
+                pa = mid if mid < lena else lena
+                pb = k - pa
 
-            # k >> 1 ,其实就是k/2
-            middle = min(k // 2, left_len)
-            middle_ex = k - middle
-            # 舍弃left_lst的一部分
-            if left_lst[middle - 1] < right_lst[middle_ex - 1]:
-                return find_kth(left_lst[middle:], left_len - middle, right_lst, right_len, k - middle)
-            # 舍弃right_lst 的一部分
-            elif left_lst[middle - 1] > right_lst[middle_ex - 1]:
-                return find_kth(left_lst, left_len, right_lst[middle_ex:], right_len - middle_ex, k - middle_ex)
-            else:
-                return left_lst[middle - 1]
+                mida = A[sa + pa - 1]
+                midb = B[sb + pb - 1]
+                if mida < midb:
+                    return findKth(A, sa + pa, lena - pa, B, sb, lenb, k - pa)
+                elif mida > midb:
+                    return findKth(A, sa, lena, B, sb + pb, lenb - pb, k - pb)
+                else:
+                    return A[sa + pa - 1]
 
-        for i in range(10):
+            return findKth(a, 0, len(a), b, 0, len(b), (len(a) + len(b)) // 2 + 1)
+
+        for _ in range(10):
             nums1 = [random.randint(0, 100) for _ in range(4)]
             nums1.sort()
             nums2 = [random.randint(0, 100) for _ in range(5)]
             nums2.sort()
             nums = nums1 + nums2
             nums.sort()
-            mid = nums[len(nums) // 2] 
-            result = find_kth(nums1, len(nums1), nums2, len(nums2), len(nums) // 2 + 1)
-            self.assertEqual(mid, result)
+            mid = nums[len(nums) // 2]
+
+            result1 = findMedian_1(nums1, nums2)
+            result2 = findMedian_2(nums1, nums2)
+            self.assertEqual(mid, result1, "test1")
+            self.assertEqual(mid, result2, "test2")
