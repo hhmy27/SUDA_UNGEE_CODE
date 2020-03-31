@@ -7,6 +7,7 @@ class BTNode:
     """
     Node of binary tree
     """
+
     def __init__(self, value, lchild=None, rchild=None):
         self.__value = value
         self.__lchild = lchild
@@ -36,6 +37,7 @@ class BTNode:
     @rchild.setter
     def rchild(self, rchild):
         self.__rchild = rchild
+
     # </editor-fold>
 
     def copy(self):
@@ -60,24 +62,6 @@ class BTNode:
         return BTNode.__levelOrderIterator(self)
 
     # <editor-fold desc="staticmethod">
-    @staticmethod
-    def fromValueList(values: List or tuple):
-        """
-        Create a BTree from a sequential storage structure
-        """
-        def __fromList(index) -> BTNode or None:
-            assert index is not None
-            assert type(index) == int
-            assert index >= 0
-            
-            if index >= len(values):
-                return None
-            else:
-                return BTNode(values[index], __fromList((index + 1) * 2 - 1), __fromList((index + 1) * 2)) \
-                        if values[index] else None
-
-        assert values is not None and type(values) == list or type(values) == tuple
-        return __fromList(0)
 
     @staticmethod
     def __preOrder(root, visit: FunctionType):
@@ -144,3 +128,23 @@ class BTNode:
                 q.put(node.rchild)
 
     # </editor-fold>
+
+
+def fromValueList(values: List or tuple):
+    """
+    Create a BTree from a sequential storage structure
+    """
+
+    def __fromList(index) -> BTNode or None:
+        assert index is not None
+        assert type(index) == int
+        assert index >= 0
+
+        if index >= len(values):
+            return None
+        else:
+            return BTNode(values[index], __fromList((index + 1) * 2 - 1), __fromList((index + 1) * 2)) \
+                if values[index] else None
+
+    assert values is not None and type(values) == list or type(values) == tuple
+    return __fromList(0)

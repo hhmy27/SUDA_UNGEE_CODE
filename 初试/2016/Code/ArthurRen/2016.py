@@ -38,7 +38,7 @@ class Test2016(unittest.TestCase):
         # </editor-fold>
 
         for case, rightResult in testcases.cases1.items():
-            A = linklist.createLinkList(case, True)  # create a link list with head node
+            A = linklist.createSingleLinkList(case, True)  # create a link list with head node
             result = removeDuplicatedElements(A)
             self.assertEqual(rightResult, [node.value for node in result.next])
 
