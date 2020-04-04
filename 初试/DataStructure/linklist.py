@@ -42,6 +42,9 @@ class LinkNode(object):
         else:
             return self.next
 
+    def toList(self):
+        return [node.value for node in self]
+
 
 def createSingleLinkList(values: Iterable, hasHead: bool = False) -> LinkNode:
     """
