@@ -51,7 +51,8 @@ UNGEE Unified National Graduate Entrance Examination 全国硕士研究生统一
 
 HMY777文件夹就是账户名为HMY777的用户编写的解答代码，想要添加自己的代码，只需要在Code文件夹中新建一个以你的Github账户名命名的文件夹即可
 
-## 具体用法
+
+## 想要添加答案？
 
 1 fork该项目
 
